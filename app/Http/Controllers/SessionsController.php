@@ -23,12 +23,12 @@ class SessionsController extends Controller
     	if(! auth()->attempt(request(['email','password'])))
     	{
     		return back()->withErrors([
-    			'message' => 'Please check your credentials and try again.'
-    		]);
+                'message' => 'Please check your credentials and try again'
+            ]);
 
     	}
 
-    	return redirect('/');
+    	return redirect('/'); // or return redirect()->home(); 
 
     	//If not, redirect back 
 
