@@ -8,7 +8,7 @@ class Post extends Model
 {
 	public function comments()
 	{
-		return $this->hasMany(Comment::class);
+		return $this->hasMany(Comment::class)->latest();
 	}
 
 	public function user() //$comment->post->user
@@ -16,8 +16,8 @@ class Post extends Model
     	return $this->belongsTo(User::class);
     }
 
-	public function addComment($body){
-		$this->comments()->create(compact('body'));
+	public function addComment($body, $user_id){
+		$this->comments()->create(compact('body','user_id'));
 
 		
 		// Comment::create([
@@ -51,5 +51,12 @@ class Post extends Model
     ->toArray();
 
 	}
-   
+   public function tags()
+   {
+   		//Any post may have many tags
+   		//Any tag be applied to many posts
+   		//That means it's a many to many relationship
+
+   		return $this->belongsToMany(Tag::class);	
+   }	
 }

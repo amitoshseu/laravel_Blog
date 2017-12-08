@@ -28,6 +28,8 @@ class SessionsController extends Controller
 
     	}
 
+        session()->flash('message', 'Thanks so much for signing up!');
+
     	return redirect('/'); // or return redirect()->home(); 
 
     	//If not, redirect back 
